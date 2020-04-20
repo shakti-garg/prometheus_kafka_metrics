@@ -19,7 +19,7 @@ CONSUMER_METRIC_RECORDS_LAG = Gauge('kafka_consumer_records_lag',
                                     labelnames=['type', 'client_id', 'topic', 'partition'])
 
 
-class MetricsManager:
+class ConsumerMetricsManager:
     def __init__(self):
         self.last_rxmsgs = {}
         self.last_rxbytes = {}

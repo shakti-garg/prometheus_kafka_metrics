@@ -45,7 +45,7 @@ PRODUCER_METRIC_RESPONSE_BYTES_RATE = Gauge('kafka_producer_response_bytes_rate'
                                             labelnames=['type', 'client_id'])
 
 
-class MetricsManager:
+class ProducerMetricsManager:
     def __init__(self):
         self.last_tx = 0
         self.last_tx_bytes = 0

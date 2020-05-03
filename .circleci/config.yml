@@ -3,17 +3,42 @@ version: 2.1
 orbs:
   python: circleci/python@0.3.0
 
+commands:
+  publish:
+    description: |
+      Publish the PyPI package
+    steps:
+      - run:
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+          name: Init .pypirc
+      - run:
+          command: |
+            python3 setup.py sdist
+          name: Create packages
+      - run:
+          command: |
+            twine upload dist/*
+          name: Upload to pypi
+
 jobs:
-  build-and-test:
+  build-test-publish:
     executor: python/default
     steps:
       - checkout
       - python/load-cache
       - python/install-deps
+      - run:
+          command: |
+            pip install --user setuptools wheel twine
+          name: Install publish dependencies
       - python/save-cache
       - python/test
+      - publish
 
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build-test-publish

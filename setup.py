@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 work_dir = os.path.dirname(os.path.realpath(__file__))
 
 setup(name='prometheus-kafka-metrics',
-      version='0.4',
+      version='0.4.1',
       description='Prometheus instrumentation library for confluent-kafka-python applications',
       url='https://github.com/shakti-garg/prometheus_kafka_metrics.git',
       author='Shakti Garg',

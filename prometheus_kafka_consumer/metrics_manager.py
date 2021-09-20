@@ -48,11 +48,12 @@ class ConsumerMetricsManager:
                     self.last_rxbytes[topic_name][partition_name] = 0
 
                 consumed_rate = (partition_metrics['rxmsgs'] - self.last_rxmsgs[topic_name][partition_name]
-                                 ) / ts_diff_sec
+                                 ) / ts_diff_sec if ts_diff_sec > 0 else 0
+                self.last_tx = stats['tx']
                 self.last_rxmsgs[topic_name][partition_name] = partition_metrics['rxmsgs']
 
                 consumed_bytes_rate = (partition_metrics['rxbytes'] - self.last_rxbytes[topic_name][partition_name]
-                                       ) / ts_diff_sec
+                                       ) / ts_diff_sec if ts_diff_sec > 0 else 0
                 self.last_rxbytes[topic_name][partition_name] = partition_metrics['rxbytes']
 
                 CONSUMER_METRIC_CONSUMED_RECORDS_RATE.labels(type=type, client_id=client_id, topic=topic_name,

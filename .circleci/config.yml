@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@0.3.0
 
 commands:
-  publish:
+  publish-new-release:
     description: |
       Publish the PyPI package
     steps:
@@ -36,7 +36,7 @@ jobs:
           name: Install publish dependencies
       - python/save-cache
       - python/test
-      - publish
+      - publish-new-release
 
 workflows:
   main:

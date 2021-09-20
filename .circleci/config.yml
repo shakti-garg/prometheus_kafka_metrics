@@ -29,6 +29,8 @@ commands:
           command: |
             pip install --user setuptools wheel twine
           name: Install publish dependencies
+      - attach_workspace:
+          at: .
       - run:
           command: |
             twine upload --skip-existing dist/*
@@ -47,6 +49,10 @@ jobs:
           command: |
             python3 setup.py sdist
           name: Create package
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/*  
   deploy:
     executor: python/default
     steps:

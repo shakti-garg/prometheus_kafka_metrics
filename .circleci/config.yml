@@ -25,10 +25,12 @@ commands:
             echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
             echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
           name: Init .pypirc
+      - python/load-cache
       - run:
           command: |
             pip install --user setuptools wheel twine
           name: Install publish dependencies
+      - python/save-cache
       - attach_workspace:
           at: .
       - run:

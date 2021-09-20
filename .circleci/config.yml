@@ -28,7 +28,6 @@ jobs:
       - python/install-deps
       - python/save-cache
       - python/test
-      - return-for-forked-pull-requests
       - run:
           command: |
             python3 setup.py sdist
@@ -42,6 +41,7 @@ jobs:
     description: |
       Publish the PyPI package
     steps:
+      - return-for-forked-pull-requests
       - run:
           command: |
             echo -e "[pypi]" >> ~/.pypirc

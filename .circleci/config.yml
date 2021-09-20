@@ -27,15 +27,11 @@ commands:
           name: Init .pypirc
       - run:
           command: |
-            python3 setup.py sdist
-          name: Create packages
-      - run:
-          command: |
             twine upload --skip-existing dist/*
           name: Upload to pypi if new release version
 
 jobs:
-  build-test-deploy:
+  build-test:
     executor: python/default
     steps:
       - checkout
@@ -47,10 +43,20 @@ jobs:
           name: Install publish dependencies
       - python/save-cache
       - python/test
+      - run:
+          command: |
+            python3 setup.py sdist
+          name: Create package
+  deploy:
+    executor: python/default
+    steps:
       - return-for-forked-pull-requests
       - publish
 
 workflows:
-  main:
+  build_test_and_deploy:
     jobs:
-      - build-test-deploy
+      - build-test
+      - deploy:
+          requires:
+            - build-test

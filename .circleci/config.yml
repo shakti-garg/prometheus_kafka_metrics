@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@0.3.0
 
 commands:
-  early_return_for_forked_pull_requests:
+  return-for-forked-pull-requests:
     description: |
       If this build is from a fork, stop executing the current job and return success.
     steps:
@@ -15,7 +15,7 @@ commands:
               echo "Nothing to do for forked PRs, so marking this step successful"
               circleci step halt
             fi
-  publish-new-release:
+  publish:
     description: |
       Publish the PyPI package
     steps:
@@ -32,10 +32,10 @@ commands:
       - run:
           command: |
             twine upload --skip-existing dist/*
-          name: Upload to pypi
+          name: Upload to pypi if new release version
 
 jobs:
-  build-test-publish:
+  build-test-deploy:
     executor: python/default
     steps:
       - checkout
@@ -47,10 +47,10 @@ jobs:
           name: Install publish dependencies
       - python/save-cache
       - python/test
-      - early_return_for_forked_pull_requests
-      - publish-new-release
+      - return-for-forked-pull-requests
+      - publish
 
 workflows:
   main:
     jobs:
-      - build-test-publish
+      - build-test-deploy

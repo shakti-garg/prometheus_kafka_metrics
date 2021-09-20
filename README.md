@@ -9,7 +9,8 @@ This python package is released at PyPi: https://pypi.org/project/prometheus-kaf
 Release is automated using git-webhook which triggers build and deployment at CircleCI pipeline(https://app.circleci.com/pipelines/github/shakti-garg/prometheus_kafka_metrics)
 
 ## Usage
-Instantiate the relevant metrics manager and pass its send function as parameter to the kafka-client's callback `stats_cb`.
+
+1. Instantiate the relevant metrics manager and pass its send function as parameter to the kafka-client's callback `stats_cb`.
 
 
 For confluent-kafka producer:
@@ -39,6 +40,16 @@ conf = {'bootstrap.servers': brokers,
         }
 Consumer(conf)
 
+```
+
+
+2. Publish the generated prometheus metrics at a http port. In case you are not using any relevant framework, it can be done naively like below:
+
+```pycon
+from prometheus_client import start_http_server
+
+if __name__ == '__main__':
+    start_http_server(8000)
 ```
 
 

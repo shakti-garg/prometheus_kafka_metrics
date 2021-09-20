@@ -9,15 +9,15 @@ This python package is released at PyPi: https://pypi.org/project/prometheus-kaf
 Release is automated using git-webhook which triggers build and deployment at CircleCI pipeline(https://app.circleci.com/pipelines/github/shakti-garg/prometheus_kafka_metrics)
 
 ## Usage
-instantiate the relevant metrics manager and provide the send function as parameter to `metrics_cb` :
+instantiate the relevant metrics manager and provide the send function as parameter to `stats_cb` :
 
 ```pycon
 from confluent_kafka import Producer
 from prometheus_kafka_producer.metrics_manager import ProducerMetricsManager
 
-metrics = ProducerMetricsManager()
+metric_manager = ProducerMetricsManager()
 conf = {'bootstrap.servers': brokers,
-        'stats_cb': metrics.send
+        'stats_cb': metric_manager.send
         }
 Producer(conf)
 

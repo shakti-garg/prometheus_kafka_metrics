@@ -72,10 +72,10 @@ class ProducerMetricsManager:
         request_bytes_rate = (stats['tx_bytes'] - self.last_tx_bytes) / ts_diff_sec if ts_diff_sec > 0 else 0
         self.last_tx_bytes = stats['tx_bytes']
 
-        response_rate = (stats['rx'] - self.last_rx) / ts_diff_sec if ts_diff_sec is not 0 else 0
+        response_rate = (stats['rx'] - self.last_rx) / ts_diff_sec if ts_diff_sec != 0 else 0
         self.last_rx_bytes = stats['rx_bytes']
         self.last_rx = stats['rx']
-        response_bytes_rate = (stats['rx_bytes'] - self.last_rx_bytes) / ts_diff_sec if ts_diff_sec is not 0 else 0
+        response_bytes_rate = (stats['rx_bytes'] - self.last_rx_bytes) / ts_diff_sec if ts_diff_sec != 0 else 0
         self.last_rx_bytes = stats['rx_bytes']
 
         inflight_msg_cnt = 0

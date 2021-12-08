@@ -1,3 +1,11 @@
+![License](https://img.shields.io/github/license/shakti-garg/prometheus_kafka_metrics)
+![Open Issues](https://img.shields.io/github/issues-raw/shakti-garg/prometheus_kafka_metrics)
+![Contributors](https://img.shields.io/github/contributors/shakti-garg/prometheus_kafka_metrics)
+
+![Build Status](https://img.shields.io/circleci/build/github/shakti-garg/prometheus_kafka_metrics/master)
+![Version](https://img.shields.io/pypi/v/prometheus-kafka-metrics)
+![Downloads](https://img.shields.io/pypi/dm/prometheus-kafka-metrics)
+
 # prometheus_kafka_metrics
 Prometheus instrumentation library for confluent-kafka-python applications. 
 

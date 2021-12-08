@@ -1,5 +1,6 @@
 ![License](https://img.shields.io/github/license/shakti-garg/prometheus_kafka_metrics)
 ![Open Issues](https://img.shields.io/github/issues-raw/shakti-garg/prometheus_kafka_metrics)
+![Open PRs](https://img.shields.io/github/issues-pr-raw/shakti-garg/prometheus_kafka_metrics)
 ![Contributors](https://img.shields.io/github/contributors/shakti-garg/prometheus_kafka_metrics)
 
 ![Build Status](https://img.shields.io/circleci/build/github/shakti-garg/prometheus_kafka_metrics/master)
